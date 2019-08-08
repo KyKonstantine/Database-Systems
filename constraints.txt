@@ -1,0 +1,258 @@
+-- adding primary keys
+
+ALTER TABLE school
+ADD CONSTRAINT pk_school
+PRIMARY KEY (id);
+
+ALTER TABLE course
+ADD CONSTRAINT pk_course
+PRIMARY KEY (id);
+
+ALTER TABLE student
+ADD CONSTRAINT pk_student
+PRIMARY KEY (id);
+
+ALTER TABLE tutor
+ADD CONSTRAINT pk_tutor
+PRIMARY KEY (id);
+
+ALTER TABLE module
+ADD CONSTRAINT pk_module
+PRIMARY KEY (id);
+
+ALTER TABLE course_module
+ADD CONSTRAINT pk_course_module
+PRIMARY KEY (id);
+
+ALTER TABLE tutor_module
+ADD CONSTRAINT pk_tutor_module
+PRIMARY KEY (tutor_id,course_module_id);
+
+ALTER TABLE assessment
+ADD CONSTRAINT pk_assessment
+PRIMARY KEY (id);
+
+ALTER TABLE student_assessment
+ADD CONSTRAINT pk_student_assessment
+PRIMARY KEY (student_id,assessment_id);
+
+ALTER TABLE book
+ADD CONSTRAINT pk_book
+PRIMARY KEY (isbn);
+
+ALTER TABLE copies
+ADD CONSTRAINT pk_copies
+PRIMARY KEY (id);
+
+ALTER TABLE loan
+ADD CONSTRAINT pk_loan
+PRIMARY KEY (transaction_no);
+
+
+-- adding foreign keys
+
+ALTER TABLE course
+ADD CONSTRAINT fk_sch_course
+FOREIGN KEY (school_id)
+REFERENCES school(id);
+
+ALTER TABLE student
+ADD CONSTRAINT fk_crs_student
+FOREIGN KEY (course_id)
+REFERENCES course(id);
+
+ALTER TABLE copies
+ADD CONSTRAINT fk_book_copy
+FOREIGN KEY (isbn)
+REFERENCES book(isbn);
+
+ALTER TABLE loan
+ADD CONSTRAINT fk_loan_student
+FOREIGN KEY (student_id)
+REFERENCES student(id);
+
+ALTER TABLE loan
+ADD CONSTRAINT fk_loan_tutor
+FOREIGN KEY (tutor_id)
+REFERENCES tutor(id);
+
+ALTER TABLE loan
+ADD CONSTRAINT fk_loan_copy
+FOREIGN KEY (copy_id)
+REFERENCES copies(id);
+
+ALTER TABLE course_module
+ADD CONSTRAINT fk_cm_module
+FOREIGN KEY (module_id)
+REFERENCES module(id);
+
+ALTER TABLE course_module
+ADD CONSTRAINT fk_cm_course
+FOREIGN KEY (course_id)
+REFERENCES course(id);
+
+ALTER TABLE tutor_module
+ADD CONSTRAINT fk_tm_tutor
+FOREIGN KEY (tutor_id)
+REFERENCES tutor(id);
+
+ALTER TABLE tutor_module
+ADD CONSTRAINT fk_tm_course_module
+FOREIGN KEY (course_module_id)
+REFERENCES course_module(id);
+
+ALTER TABLE assessment
+ADD CONSTRAINT fk_assessment
+FOREIGN KEY (course_module_id)
+REFERENCES course_module(id);
+
+ALTER TABLE student_assessment
+ADD CONSTRAINT fk_sa_student
+FOREIGN KEY (student_id)
+REFERENCES student(id);
+
+ALTER TABLE student_assessment
+ADD CONSTRAINT fk_sa_assessment
+FOREIGN KEY (assessment_id)
+REFERENCES assessment(id);
+
+-- check constraints
+
+
+ALTER TABLE course
+ADD CONSTRAINT ck_course_duration
+CHECK (duration >0);
+
+ALTER TABLE student
+ADD CONSTRAINT ck_student_gender
+CHECK (gender IN ('M','F'));
+
+ALTER TABLE student
+ADD CONSTRAINT ck_student_honorific
+CHECK (honorific IN ('MR.','MRS.','MISS','MS.'));
+
+ALTER TABLE tutor
+ADD CONSTRAINT ck_tutor_gender
+CHECK (gender IN ('M','F'));
+
+ALTER TABLE tutor
+ADD CONSTRAINT ck_tutor_rank
+CHECK (rank IN ('PROFESSOR','ASSOCIATE PROFESSOR','ASSISTANT PROFESSOR','LECTURER', 'LABORATORY TEACHING STAFF'));
+
+ALTER TABLE module
+ADD CONSTRAINT ck_module_ects
+CHECK (ects >0);
+
+ALTER TABLE module
+ADD CONSTRAINT ck_module_type
+CHECK (type IN ('C','E'));
+
+ALTER TABLE assessment
+ADD CONSTRAINT ck_assessment_type
+CHECK (type IN ('EXAM','COURSEWORK'));
+
+-- UNIQUE CONSTRAINTS
+
+
+ALTER TABLE student
+ADD CONSTRAINT u_student_email
+UNIQUE(email);
+
+ALTER TABLE student
+ADD CONSTRAINT u_student_ide_card
+UNIQUE(ide_card);
+
+ALTER TABLE tutor
+ADD CONSTRAINT u_tutor_email
+UNIQUE(email);
+
+ALTER TABLE tutor
+ADD CONSTRAINT u_tutor_ide_card
+UNIQUE(ide_card);
+
+
+-- UPPER TRIGGERS
+
+ 
+CREATE OR REPLACE TRIGGER assign.school_upper
+BEFORE INSERT OR UPDATE ON school
+       FOR EACH ROW
+DECLARE
+   dup_flag  INTEGER;
+BEGIN
+   --Force all department names to uppercase.
+    :NEW.dept := UPPER(:NEW.dept);
+END;
+/
+
+CREATE OR REPLACE TRIGGER assign.course_upper
+BEFORE INSERT OR UPDATE ON course
+       FOR EACH ROW
+DECLARE
+   dup_flag  INTEGER;
+BEGIN
+   --Force all course names to uppercase.
+    :NEW.title := UPPER(:NEW.title);
+END;
+/
+
+CREATE OR REPLACE TRIGGER assign.student_upper
+BEFORE INSERT OR UPDATE ON student
+       FOR EACH ROW
+DECLARE
+   dup_flag  INTEGER;
+BEGIN
+    :NEW.name := UPPER(:NEW.name);
+	:NEW.surname := UPPER(:NEW.surname);
+	:NEW.ide_card := UPPER(:NEW.ide_card);
+	:NEW.email := UPPER(:NEW.email);
+	:NEW.address := UPPER(:NEW.address);
+	:NEW.city := UPPER(:NEW.city);
+	:NEW.country := UPPER(:NEW.country);
+	:NEW.postal := UPPER(:NEW.postal);
+END;
+/
+
+CREATE OR REPLACE TRIGGER assign.tutor_upper
+BEFORE INSERT OR UPDATE ON tutor
+       FOR EACH ROW
+DECLARE
+   dup_flag  INTEGER;
+BEGIN
+    :NEW.name := UPPER(:NEW.name);
+	:NEW.surname := UPPER(:NEW.surname);
+	:NEW.ide_card := UPPER(:NEW.ide_card);
+	:NEW.email := UPPER(:NEW.email);
+	:NEW.address := UPPER(:NEW.address);
+	:NEW.city := UPPER(:NEW.city);
+	:NEW.country := UPPER(:NEW.country);
+	:NEW.postal := UPPER(:NEW.postal);
+	:NEW.affiliation := UPPER(:NEW.affiliation);
+END;
+/
+
+CREATE OR REPLACE TRIGGER assign.module_upper
+BEFORE INSERT OR UPDATE ON module
+       FOR EACH ROW
+DECLARE
+   dup_flag  INTEGER;
+BEGIN
+    :NEW.title := UPPER(:NEW.title);
+	:NEW.description := UPPER(:NEW.description);
+END;
+/
+
+CREATE OR REPLACE TRIGGER assign.book_upper
+BEFORE INSERT OR UPDATE ON book
+       FOR EACH ROW
+DECLARE
+   dup_flag  INTEGER;
+BEGIN
+    :NEW.title := UPPER(:NEW.title);
+	:NEW.author := UPPER(:NEW.author);
+	:NEW.publisher := UPPER(:NEW.publisher);
+	:NEW.category := UPPER(:NEW.category);
+END;
+/
+
+COMMIT;

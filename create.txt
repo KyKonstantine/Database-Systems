@@ -1,0 +1,182 @@
+-- Creation of tables
+
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-YYYY' NLS_DATE_LANGUAGE='english';
+select sysdate from dual; 
+
+-- Starting from the tables with the less relations
+
+CREATE TABLE school(
+id NUMBER(2),                              -- PK
+dept VARCHAR2(50) NOT NULL                 
+);
+
+
+
+CREATE TABLE course(
+id NUMBER(2),				               -- PK
+school_id NUMBER(2)	NOT NULL,		       -- FK refers to school.id
+title VARCHAR2(50) NOT NULL,
+duration NUMBER(2,1) NOT NULL
+);
+
+
+
+CREATE TABLE student(
+id NUMBER(6),			                   -- PK
+name VARCHAR2(50) NOT NULL,
+surname VARCHAR2(50) NOT NULL,
+course_id NUMBER(4)	NOT NULL,	           -- FK refers to course.id
+ide_card VARCHAR2(10) NOT NULL,            --UNIQUE
+birth_date DATE NOT NULL,
+gender CHAR(1) NOT NULL,                   -- CHECK(M,F)
+honorific CHAR(4) NOT NULL,                -- CHECK(Mr.,Mrs.,Miss,Ms.)
+tel CHAR(14) NOT NULL,
+email VARCHAR2(50) NOT NULL,
+address VARCHAR2(50) NOT NULL,
+city VARCHAR2(25) NOT NULL,
+country VARCHAR2(50) DEFAULT 'GREECE',
+postal VARCHAR2(10) NOT NULL
+);
+
+
+
+CREATE TABLE tutor(
+id NUMBER(3),				               -- PK
+name VARCHAR2(20) NOT NULL,
+surname VARCHAR2(20) NOT NULL,
+ide_card VARCHAR2(10) NOT NULL,            --UNIQUE
+birth_date DATE NOT NULL,
+gender CHAR(1) NOT NULL,                   -- CHECK(M,F)
+rank VARCHAR2(30) NOT NULL,				   -- CHECK(Professor, Associate Professor,Assistant Professor, Laboratory Teaching Staff, Adjunct Assistant Professor)
+tel CHAR(14) NOT NULL,
+email VARCHAR2(50) NOT NULL,
+address VARCHAR2(50) NOT NULL,
+city VARCHAR2(25) NOT NULL,
+country VARCHAR2(50) DEFAULT 'GREECE',
+postal VARCHAR2(10) NOT NULL,
+affiliation VARCHAR2(50)
+);
+
+
+
+CREATE TABLE module(
+id NUMBER(4),                              -- PK
+title VARCHAR2(50) NOT NULL,
+ects NUMBER(3,1) NOT NULL,
+type char(1) NOT NULL,                     -- CHECK(C,E) C for core, E for elective
+theory_hours NUMBER(1) NOT NULL,           -- Hours/week
+lab_hours NUMBER(1),                       -- Hours/week
+description VARCHAR2(300)
+);
+
+
+
+CREATE TABLE course_module(
+id NUMBER(4),					           -- PK sum of course.id + module.id
+course_id NUMBER(2)	NOT NULL,		       -- FK course.id
+module_id NUMBER(4)	NOT NULL		       -- FK module.id
+);
+
+
+
+CREATE TABLE tutor_module(
+tutor_id NUMBER(3) NOT NULL,			   -- FK tutor.id	      }
+course_module_id NUMBER(4) NOT NULL		   -- FK course_module.id } composite key
+);
+
+
+
+CREATE TABLE assessment(
+id NUMBER(5),					           -- PK
+course_module_id NUMBER(4) NOT NULL,       -- FK course_module.id
+type VARCHAR2(10) NOT NULL                 -- CHECK(exam,coursework)
+);
+
+
+
+CREATE TABLE student_assessment(
+assessment_id NUMBER(6), 				   -- FK assessment.id	 }
+student_id NUMBER(6),			           -- FK student.id      } composite key
+mark NUMBER(4,2),
+delivery_date DATE
+);
+
+
+
+CREATE TABLE book(
+isbn CHAR(13),                           -- PK
+title VARCHAR2(70) NOT NULL,
+author VARCHAR2(50) NOT NULL,
+publication_date NUMBER(4) NOT NULL,       -- Insert only the year of publication
+publisher VARCHAR2(50) NOT NULL,
+category VARCHAR2(20)
+);
+
+
+
+CREATE TABLE copies(
+id CHAR(16),                                -- PK in the form of [isbn_no] where (noE[01,99])
+isbn CHAR(13) NOT NULL                      -- FK refers to book.isbn
+);
+
+
+CREATE TABLE loan(
+transaction_no NUMBER(10),                  -- PK
+student_id NUMBER(6),                       -- FK refers to student.id 
+tutor_id NUMBER(3),                         -- FK refers to tutor.id
+copy_id CHAR(16) NOT NULL,                  -- FK refers to copies.id
+loan_date DATE NOT NULL,
+return_date DATE
+);
+
+-- Sequences
+
+CREATE SEQUENCE sch_id                     -- Sequence for the school id
+MINVALUE 1
+MAXVALUE 99
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+CREATE SEQUENCE c_id                       -- Sequence for the courses id from 10 with step 1
+MINVALUE 10
+MAXVALUE 99
+START WITH 10
+INCREMENT BY 1
+NOCACHE;
+
+CREATE SEQUENCE s_id                       -- Sequence for the student id from 100000 with step 100
+MINVALUE 100000
+MAXVALUE 999999
+START WITH 100000
+INCREMENT BY 100
+NOCACHE;
+
+CREATE SEQUENCE t_id                       -- Sequence for the tutor id from 100 with step 10
+MINVALUE 100
+MAXVALUE 999
+START WITH 100
+INCREMENT BY 10
+NOCACHE;
+
+CREATE SEQUENCE m_id                       -- Sequence for the module id from 2000 with step 100
+MINVALUE 2000
+MAXVALUE 9999
+START WITH 2000
+INCREMENT BY 100
+NOCACHE;
+
+CREATE SEQUENCE ass_id                     -- Sequence for the assessment id from 100000 with step 1
+MINVALUE 10000
+MAXVALUE 99999
+START WITH 10000
+INCREMENT BY 1
+NOCACHE;
+
+CREATE SEQUENCE trans_no                    -- Sequence for the transaction_no from 1 with step 1
+MINVALUE 1
+MAXVALUE 9999999999
+START WITH 1
+INCREMENT BY 1
+NOCACHE;

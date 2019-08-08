@@ -1,0 +1,131 @@
+-- a
+SELECT * FROM tutor;
+
+-- b
+SELECT title, author, isbn FROM book ORDER BY author DESC;
+
+-- c
+SELECT honorific, surname, name FROM student WHERE course_id = 11 
+
+SELECT name, surname FROM student WHERE surname LIKE '%OU';
+
+SELECT title, ects FROM module WHERE NOT type = 'E';
+
+SELECT name, surname FROM student WHERE birth_date BETWEEN '01-JAN-1990' AND '31-DEC-1992';
+
+-- d
+SELECT dept, title FROM school 
+JOIN course
+ON school.id = course.school_id;
+
+SELECT student_id, title, TO_CHAR(loan_date,'DD-MON-YYYY') FROM book 
+JOIN copies
+ON book.isbn = copies.isbn
+JOIN loan
+ON loan.copy_id  = copies.id
+WHERE loan.student_id IS NOT NULL;
+
+SELECT name, surname, title, MONTHS_BETWEEN(return_date, loan_date) loan_period FROM book 
+JOIN copies
+ON book.isbn = copies.isbn
+JOIN loan
+ON loan.copy_id  = copies.id
+JOIN tutor
+ON tutor.id = loan.tutor_id
+WHERE loan.tutor_id IS NOT NULL
+ORDER BY loan_period DESC;
+
+-- e
+create view No_of_Students as
+SELECT COUNT(name) as Students, title FROM student
+JOIN COURSE
+ON student.course_id=course.id
+GROUP BY title;
+select max(students) from No_of_Students;
+
+SELECT COUNT(name) as No_of_Students, title FROM student
+JOIN COURSE
+ON student.course_id=course.id
+GROUP BY title
+order by No_of_Students asc;
+
+SELECT id FROM copies
+JOIN loan
+ON copies.id = loan.copy_id
+WHERE TO_CHAR(loan_date,'YYYY') = 2018;
+
+SELECT count(id) no_of_copies FROM copies
+JOIN loan
+ON copies.id = loan.copy_id
+WHERE TO_CHAR(loan_date,'YYYY') = 2018;
+
+SELECT id, to_char(loan_date, 'MON-YYYY') FROM copies
+JOIN loan
+ON copies.id = loan.copy_id
+WHERE TO_CHAR(loan_date,'MON') = 'OCT';
+
+SELECT title, to_char(loan_date, 'MON-YYYY') as loan_date FROM copies
+JOIN loan
+ON copies.id = loan.copy_id
+join book
+on copies.isbn = book.isbn
+WHERE TO_CHAR(loan_date,'MON') = 'OCT';
+
+select surname, avg(mark) FROM student
+JOIN student_assessment
+ON student.id = student_assessment.student_id
+GROUP BY surname;
+
+select surname, avg(mark) FROM student
+JOIN student_assessment
+ON student.id = student_assessment.student_id
+where avg(mark) is null
+group by surname;
+
+select tutor.surname, count(tutor_module.tutor_id) from tutor
+join tutor_module
+on tutor.id = tutor_module.tutor_id
+group by surname;
+
+SELECT title, avg(mark) FROM module
+JOIN course_module
+ON module.id = course_module.module_id
+JOIN assessment
+ON assessment.course_module_id = course_module.id
+JOIN student_assessment
+ON student_assessment.assessment_id = assessment.id
+GROUP BY title;
+
+---extra bonus
+
+
+SELECT title, COUNT(transaction_no) FROM COURSE
+JOIN student
+ON course.id = student.course_id
+JOIN LOAN
+ON loan.student_id = student.id
+GROUP BY title; 
+# θελει nested query για τη MAX
+
+
+SELECT author, COUNT(transaction_no) total_loans FROM school
+JOIN course
+ON school.id = course.school_id
+JOIN student
+ON course.id = student.course_id
+JOIN loan
+ON student.id = loan.student_id
+JOIN copies
+ON copies.id = loan.copy_id
+JOIN book
+ON book.isbn = copies.isbn
+WHERE school.dept = 'INFORMATICS' 
+GROUP BY author;
+
+
+
+
+
+
+
+

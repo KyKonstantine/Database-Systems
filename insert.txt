@@ -1,0 +1,303 @@
+
+--table SCHOOL
+insert into SCHOOL(id, dept) 
+values(sch_id.NEXTVAL, 'Mathematics');
+insert into SCHOOL(id, dept) 
+values(sch_id.NEXTVAL, 'Informatics');
+
+--table COURSE
+insert into COURSE(id, school_id, title, duration) 
+values(c_id.NEXTVAL, 1, 'MSc in Applied Mathematics', 4);
+insert into COURSE(id, school_id, title, duration) 
+values(c_id.NEXTVAL, 1, 'MSc in Statistics', 4);
+insert into COURSE(id, school_id, title, duration)
+values(c_id.NEXTVAL, 2, 'MSc in Programming', 3);
+insert into COURSE(id, school_id, title, duration) 
+values(c_id.NEXTVAL, 2, 'MSc in Software Development', 3);
+
+--table STUDENT
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal) 
+values(s_id.NEXTVAL, 11, 'Symeon', 'Tsinaslanidis', 'af 456921', '04-NOV-1993', 'M', 'MR.', 00306998727463, 'sitsin@yahoo.gr', 'Vyzantiou 17', 'Kilkis', 'Greece', '61100' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal)  
+values(s_id.NEXTVAL, 12, 'Konstantinos', 'Kyranou', 'AG 692351', '04-Jun-1992', 'M', 'MR.', 00306979744344, 'kyr_kostas5@yahoo.gr', 'Archilohou 13', 'Thessaloniki', 'Greece', '54352' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, postal) 
+values(s_id.NEXTVAL, 11, 'ioanna', 'papadopoulou', 'ad 232125', '13-FEB-1991', 'F', 'MISS', 0030210550113, 'IO_PAP@yahoo.com', 'kentrou 18', 'thessaloniki', '53213' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal) 
+values(s_id.NEXTVAL, 13, 'Connor', 'Mcdany', '75adg3621', '14-JUL-1988', 'M', 'MR.',  00503876768911, 'c_dan@gmail.com', 'Naas Road 12', 'Dublin', 'Ireland', 'Dublin 12' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal) 
+values(s_id.NEXTVAL, 10, 'Dimitrios', 'Dimitriou', 'k 784776', '09-JUL-1983', 'M', 'MR.',  00306975841842, 'dimitriou@hotmail.gr', 'Nemeas 1', 'Kastoria', 'Greece', '58005' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal) 
+values(s_id.NEXTVAL, 10, 'Kassandra', 'Levadiotou', 'al 562542', '18-DEC-1995', 'F', 'MISS',  00306966966966, 'kaslev@yahoo.gr', 'Ano Polis 23', 'thessaloniki', 'Greece', '67100' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal) 
+values(s_id.NEXTVAL, 13, 'Zozefina', 'Bosmali', 'g 361002', '12-Mar-1974', 'F', 'MRS.',  00306984654389, 'zboss@gmail.com', 'Leoforos Nikos 36', 'Aiginio', 'Greece', '60300' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, postal) 
+values(s_id.NEXTVAL, 13, 'Anastasios', 'kesidis', 'ag 241101', '18-DEC-1995', 'M', 'MR.',  00302310315707, 'an_kes@yahoo.com', 'botanikou 13', 'thessaloniki', '10108' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal) 
+values(s_id.NEXTVAL, 12, 'Xanthipi', 'apostolou', 'am 233001', '16-MAY-1993', 'F', 'MISS',  00302310273670, 'xanthi@gmail.gr', 'alexandras 10', 'euosmos', 'greece', '01442' );
+insert into STUDENT(id, course_id, name, surname,ide_card, birth_date, gender, honorific, tel, email, address, city, country, postal) 
+values(s_id.NEXTVAL, 12, 'evan', 'coil', '25561 klf', '25-OCT-1993', 'M', 'MR.',  00210259753951, 'coil@yahoo.com', 'Block Str. 8', 'london', 'uk', 'hj231015' );
+
+--table TUTOR
+insert into TUTOR(id, name, surname, ide_card, birth_date, gender, rank, tel, email, address, city, country, postal)
+values(t_id.NEXTVAL, 'Christos', 'Berberidis', 'ad 251001', '11-DEC-1979', 'M', 'LABORATORY TEACHING STAFF', 00302310807506, 'berbe@ihu.edu.gr', 'Adrianopoulou 33', 'Thessaloniki', 'Greece', '64528');
+insert into TUTOR(id, name, surname, ide_card, birth_date, gender, rank, tel, email, address, city, country, postal, affiliation)
+values(t_id.NEXTVAL, 'alexandros', 'karagrigoriou', 'l 541044', '23-FEB-1966', 'M', 'PROFESSOR', 00306986524785, 'alex@ihu.edu.gr', 'Navarinou 46', 'Thessaloniki', 'Greece', '58785', 'statistics');
+insert into TUTOR(id, name, surname, ide_card, birth_date, gender, rank, tel, email, address, city, country, postal)
+values(t_id.NEXTVAL, 'ILIAS', 'KARADIMOS', 'am 899662', '03-OCT-1983', 'M', 'ASSISTANT PROFESSOR', 0046766920978, 'karadimos@ihu.edu.gr', 'Hagagatan 1', 'Gothenburg', 'Sweeden', '25678');
+insert into TUTOR(id, name, surname, ide_card, birth_date, gender, rank, tel, email, address, city, country, postal)
+values(t_id.NEXTVAL, 'Chara', 'Charalampaki', 'n 239952', '01-JAN-1971', 'F', 'PROFESSOR', 00302310979753, 'lampaki@ihu.edu.gr', 'Ermou 12', 'Athens', 'Greece', '25678');
+insert into TUTOR(id, name, surname, ide_card, birth_date, gender, rank, tel, email, address, city, country, postal)
+values(t_id.NEXTVAL, 'Maritina', 'Pavlopoulou', 'ak 411120', '27-FEB-1979', 'F', 'LABORATORY TEACHING STAFF', 00306986755863, 'mapa@ihu.edu.gr', 'Akropoleos 36', 'Athens', 'Greece', '01562');
+
+--table MODULE
+insert into MODULE(id, title , ects, type, theory_hours, description)
+values(m_id.NEXTVAL, 'Basic Mathematic Principles', 4.5, 'C', 3, 'Mathematical logic' );
+insert into MODULE(id, title , ects, type, theory_hours, lab_hours)
+values(m_id.NEXTVAL, 'Statistics', 4.0, 'C', 2, 2);
+insert into MODULE(id, title , ects, type, theory_hours, lab_hours, description)
+values(m_id.NEXTVAL, 'Basic Programming', 4.5, 'C', 2, 3, 'Learning object oriented programming languages');
+insert into MODULE(id, title , ects, type, theory_hours, lab_hours)
+values(m_id.NEXTVAL, 'Database systems', 4.0, 'C', 3, 1);
+insert into MODULE(id, title , ects, type, theory_hours)
+values(m_id.NEXTVAL, 'Data Science for Business', 4.0, 'C', 3);
+insert into MODULE(id, title , ects, type, theory_hours)
+values(m_id.NEXTVAL, 'Linear Algebra', 3.5, 'E', 3);
+insert into MODULE(id, title , ects, type, theory_hours, lab_hours)
+values(m_id.NEXTVAL, 'Data Visualization', 3.0, 'E', 2, 2);
+insert into MODULE(id, title , ects, type, theory_hours, lab_hours)
+values(m_id.NEXTVAL, 'Machine Learning', 4.5, 'C', 3, 1);
+
+--table COURSE_MODULE
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2010,10,2000);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2510,10,2500);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2511,11,2500);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2111,11,2100);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2112,12,2100);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2212,12,2200);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2312,12,2300);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2413,13,2400);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2613,13,2600);
+insert into COURSE_MODULE(id, course_id, module_id)
+values(2713,13,2700);
+
+
+--table TUTOR_MODULE
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(120,2010);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(120,2510);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(130,2510);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(130,2511);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(110,2111);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(110,2112);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(100,2212);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(100,2312);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(100,2713);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(140,2713);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(140,2613);
+insert into TUTOR_MODULE(tutor_id, course_module_id)
+values(140,2413);
+
+--table ASSESSMENT
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2010, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2510, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2511, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2111, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2112, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2212, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2212, 'COURSEWORK');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2312, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2413, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2613, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2713, 'EXAM');
+insert into ASSESSMENT(id, course_module_id, type)
+values(ass_id.NEXTVAL, 2713, 'COURSEWORK');
+
+-- table STUDENT_ASSESSMENT
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100000,10002,6.5,'09-FEB-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100000,10003,7,'12-FEB-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100100,10004,8,'26-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100100,10005,7.5,'24-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100100,10006,7.5,'09-DEC-2017');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100100,10007,5,'20-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100200,10002,6,'09-FEB-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100200,10003);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100300,10011,6,'16-DEC-2017');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100300,10009,5,'27-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100300,10008);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100300,10010);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100400,10000);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100400,10001,5.5,'14-FEB-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100500,10000,7.5,'10-FEB-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100500,10001,8,'14-FEB-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100600,10008,8,'29-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100600,10009,4,'27-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100600,10011,8,'16-DEC-2017');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100600,10010,6,'28-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100700,10008);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100700,10009);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100700,10010);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100700,10011);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100800,10004,6.5,'26-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100800,10005,3,'24-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100800,10007,5,'20-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100800,10006,8,'09-DEC-2017');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100900,10004,5,'26-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id, mark, delivery_date)
+values(100900,10005,2,'24-JAN-2018');
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100900,10006);
+insert into STUDENT_ASSESSMENT(student_id, assessment_id)
+values(100900,10007);
+
+-- table BOOK
+insert into BOOK
+values (0071154671, 'machine learning', 'tom m. mitchell', 1997, 'mcgraw hill international editions',NULL);
+insert into BOOK
+values(9789605241834, 'calculus volume i', 'r.l. finney', 2012, 'panepistimiakes ekdoseis kritis',NULL);
+insert into BOOK
+values(9789605241841, 'calculus volume ii', 'r.l. finney', 2012, 'panepistimiakes ekdoseis kritis',NULL);
+insert into BOOK
+values(9789602662656, 'probability theory and applications', 'charalampos charalampidis', 2009, 'ekdoseis symmetria',NULL);
+insert into BOOK
+values(9780132144988, 'database systems', 'ramez elmasri', 2011, 'pearson',NULL);
+
+-- table COPIES
+insert into COPIES
+values('0071154671_01', 0071154671);
+insert into COPIES
+values('9789605241834_01', 9789605241834);
+insert into COPIES
+values('9789605241834_02', 9789605241834);
+insert into COPIES
+values('9789605241834_03', 9789605241834);
+insert into COPIES
+values('9789605241841_01', 9789605241841);
+insert into COPIES
+values('9789602662656_01', 9789602662656);
+insert into COPIES
+values('9780132144988_01', 9780132144988);
+insert into COPIES
+values('9780132144988_02', 9780132144988);
+
+-- table LOAN
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,100,'0071154671_01','25-MAR-2005','02-APR-2005');
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,130,'0071154671_01','14-JAN-2009','22-JAN-2009');
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,130,'9789602662656_01','04-FEB-2009','05-MAR-2009');
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,110,'9789602662656_01','15-OCT-2010','04-NOV-2010');
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,120,'9780132144988_02','08-JUN-2011','02-AUG-2011');
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,100,'9780132144988_01','12-JUN-2011','25-JUN-2011');
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,130,'9780132144988_01','16-JUL-2011','23-JUL-2011');
+insert into LOAN
+values(trans_no.NEXTVAL,100000,NULL,'9789602662656_01','10-OCT-2017','21-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100800,NULL,'0071154671_01','10-OCT-2017','25-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100300,NULL,'9780132144988_02','11-OCT-2017','19-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100900,NULL,'9780132144988_01','13-OCT-2017','02-NOV-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100400,NULL,'9789605241834_03','13-OCT-2017','22-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100400,NULL,'9789605241841_01','13-OCT-2017','25-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100500,NULL,'9789605241834_02','14-OCT-2017','20-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100000,NULL,'9789605241834_01','16-OCT-2017','21-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100100,NULL,'9789602662656_01','21-OCT-2017','29-OCT-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100100,NULL,'9780132144988_02','21-OCT-2017','01-NOV-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100200,NULL,'9789605241834_03','25-OCT-2017','02-NOV-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100900,NULL,'0071154671_01','27-OCT-2017','13-NOV-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,NULL,130,'9789605241841_01','01-NOV-2017','10-NOV-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100000,NULL,'9789605241841_01','14-NOV-2017','19-NOV-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100200,NULL,'0071154671_01','14-NOV-2017','24-NOV-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100700,NULL,'9789602662656_01','21-NOV-2017','01-DEC-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100900,NULL,'9780132144988_02','02-DEC-2017','13-DEC-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100800,NULL,'9780132144988_01','06-DEC-2017','22-DEC-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100100,NULL,'0071154671_01','14-DEC-2017','27-DEC-2017');
+insert into LOAN
+values(trans_no.NEXTVAL,100200,NULL,'9789605241841_01','20-DEC-2017','05-JAN-2018');
+insert into LOAN
+values(trans_no.NEXTVAL,100100,NULL,'9789605241834_03','03-JAN-2018',NULL);
+insert into LOAN
+values(trans_no.NEXTVAL,100700,NULL,'9780132144988_02','07-JAN-2018',NULL);
+insert into LOAN
+values(trans_no.NEXTVAL,100700,NULL,'0071154671_01','09-JAN-2018',NULL);
+
+COMMIT;
